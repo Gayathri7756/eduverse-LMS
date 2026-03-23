@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useSearchParams } from 'react-router-dom'
 import CourseCard from '../components/CourseCard'
+import { getCourses } from '../api/apiService'
 
 function CourseCatalog() {
   const [searchParams] = useSearchParams()
@@ -17,10 +17,10 @@ function CourseCatalog() {
       try {
         setLoading(true)
         setError(null)
-        const response = await axios.get('http://localhost:5000/api/courses')
-        console.log('Courses fetched:', response.data)
-        setCourses(response.data)
-        setFilteredCourses(response.data)
+        const data = await getCourses()
+        console.log('Courses fetched:', data)
+        setCourses(data)
+        setFilteredCourses(data)
       } catch (err) {
         console.error('Error fetching courses:', err)
         setError('Failed to load courses. Please try again later.')

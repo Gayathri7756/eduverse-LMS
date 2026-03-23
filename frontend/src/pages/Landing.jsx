@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { getCourses } from '../api/apiService'
 import CourseCard from '../components/CourseCard'
 
 export default function Landing() {
@@ -13,8 +13,8 @@ export default function Landing() {
       try {
         setLoading(true)
         setError(null)
-        const response = await axios.get('http://localhost:5000/api/courses')
-        setCourses(response.data.slice(0, 8))
+        const data = await getCourses()
+        setCourses(data.slice(0, 8))
       } catch (err) {
         console.error('Error fetching courses:', err)
         setError('Failed to load courses. Please try again later.')

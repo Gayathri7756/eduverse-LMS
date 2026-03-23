@@ -1,0 +1,311 @@
+# Course Access - Visual Guide
+
+## Before Enrollment (NOT Enrolled)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    COURSE DETAIL PAGE                   │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  React for Beginners                                   │
+│  Learn React from scratch with practical examples      │
+│                                                         │
+│  Instructor: React Master                              │
+│  Duration: 4 weeks                                      │
+│  Students: 5                                            │
+│  Price: ₹499                                            │
+│                                                         │
+│  [Enroll Now Button]                                   │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  About This Course                                      │
+│  Complete guide to React fundamentals...               │
+│                                                         │
+│  📚 Comprehensive  👨‍🏫 Expert  🎓 Certificate           │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│                    🔒 LOCKED 🔒                         │
+│                                                         │
+│         Course Content Locked                          │
+│                                                         │
+│  Enroll in this course to access all lessons           │
+│  and videos                                            │
+│                                                         │
+│  [Enroll Now to Unlock]                                │
+│                                                         │
+│  ❌ NO YouTube Videos Visible                          │
+│  ❌ NO Sections Visible                                │
+│  ❌ NO Lessons Visible                                 │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+## After Enrollment (ENROLLED)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    COURSE DETAIL PAGE                   │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  React for Beginners                                   │
+│  Learn React from scratch with practical examples      │
+│                                                         │
+│  Instructor: React Master                              │
+│  Duration: 4 weeks                                      │
+│  Students: 5                                            │
+│  Price: ₹499                                            │
+│                                                         │
+│  [✓ Already Enrolled] [▶ Start Learning]               │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  About This Course                                      │
+│  Complete guide to React fundamentals...               │
+│                                                         │
+│  📚 Comprehensive  👨‍🏫 Expert  🎓 Certificate           │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  Course Content                                         │
+│                                                         │
+│  ✓ Section 1: Getting Started                          │
+│    🎥 Lesson 1: Intro to React                         │
+│    🎥 Lesson 2: React Components                       │
+│                                                         │
+│  ✓ Section 2: Advanced Concepts                        │
+│    🎥 Lesson 3: State Management                       │
+│    🎥 Lesson 4: Hooks                                  │
+│                                                         │
+│  ✓ YouTube Videos Visible                              │
+│  ✓ All Sections Visible                                │
+│  ✓ All Lessons Visible                                 │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│              ✓ You're Enrolled!                         │
+│                                                         │
+│  You can now access all course content                 │
+│  and videos                                            │
+│                                                         │
+│  [Start Learning]                                      │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Enrollment Flow
+
+```
+Step 1: Click Course
+┌──────────────────┐
+│  Course Card     │
+│  [Click Here]    │
+└────────┬─────────┘
+         │
+         ↓
+Step 2: View Details (Locked)
+┌──────────────────────────────┐
+│  Course Detail Page          │
+│  🔒 Content Locked           │
+│  [Enroll Now]                │
+└────────┬─────────────────────┘
+         │
+         ↓
+Step 3: Click Enroll
+┌──────────────────────────────┐
+│  Registration Modal          │
+│  Fill Form                   │
+│  [Continue to Payment]       │
+└────────┬─────────────────────┘
+         │
+         ↓
+Step 4: Payment
+┌──────────────────────────────┐
+│  Payment Modal               │
+│  Select Method               │
+│  [Pay Now]                   │
+└────────┬─────────────────────┘
+         │
+         ↓
+Step 5: Processing
+┌──────────────────────────────┐
+│  ⏳ Processing Payment...     │
+│  Please wait...              │
+└────────┬─────────────────────┘
+         │
+         ↓
+Step 6: Success
+┌──────────────────────────────┐
+│  ✓ Enrollment Complete       │
+│  Course in "My Learning"     │
+└────────┬─────────────────────┘
+         │
+         ↓
+Step 7: My Learning Dashboard
+┌──────────────────────────────┐
+│  My Learning                 │
+│  [React for Beginners]       │
+│  Progress: 0%                │
+│  [Click to Continue]         │
+└────────┬─────────────────────┘
+         │
+         ↓
+Step 8: View Course (Unlocked)
+┌──────────────────────────────┐
+│  Course Detail Page          │
+│  ✓ Content Unlocked          │
+│  [Start Learning]            │
+└────────┬─────────────────────┘
+         │
+         ↓
+Step 9: Video Player
+┌──────────────────────────────┐
+│  🎥 Video Player             │
+│  YouTube Videos              │
+│  Activity Tracking           │
+│  Progress Tracking           │
+└──────────────────────────────┘
+```
+
+## Course Content Visibility
+
+### NOT Enrolled
+```
+Course Detail Page
+├─ ✓ Course Title
+├─ ✓ Course Description
+├─ ✓ Instructor Name
+├─ ✓ Duration
+├─ ✓ Students Count
+├─ ✓ Price
+├─ ✓ Course Features
+├─ ✓ Course Stats
+├─ ✗ Sections (HIDDEN)
+├─ ✗ Lessons (HIDDEN)
+├─ ✗ YouTube Videos (HIDDEN)
+└─ 🔒 "Course Content Locked" Message
+```
+
+### ENROLLED
+```
+Course Detail Page
+├─ ✓ Course Title
+├─ ✓ Course Description
+├─ ✓ Instructor Name
+├─ ✓ Duration
+├─ ✓ Students Count
+├─ ✓ Price
+├─ ✓ Course Features
+├─ ✓ Course Stats
+├─ ✓ Sections (VISIBLE)
+├─ ✓ Lessons (VISIBLE)
+├─ ✓ YouTube Videos (VISIBLE)
+├─ ✓ "Start Learning" Button
+└─ ✓ "You're Enrolled!" Message
+```
+
+## My Learning Dashboard
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    MY LEARNING                          │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  Continue your learning journey                        │
+│  [Browse More Courses]                                 │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ┌──────────────────┐  ┌──────────────────┐            │
+│  │ React for        │  │ Node.js Backend  │            │
+│  │ Beginners        │  │ Development      │            │
+│  │                  │  │                  │            │
+│  │ By React Master  │  │ By Backend Expert│            │
+│  │                  │  │                  │            │
+│  │ Progress: 0%     │  │ Progress: 0%     │            │
+│  │ ▓░░░░░░░░░░░░░░ │  │ ▓░░░░░░░░░░░░░░ │            │
+│  │                  │  │                  │            │
+│  │ [Click to Start] │  │ [Click to Start] │            │
+│  └──────────────────┘  └──────────────────┘            │
+│                                                         │
+│  ┌──────────────────┐  ┌──────────────────┐            │
+│  │ Python for Data  │  │ Web Design       │            │
+│  │ Science          │  │ Fundamentals     │            │
+│  │                  │  │                  │            │
+│  │ By Data Scientist│  │ By Design Master │            │
+│  │                  │  │                  │            │
+│  │ Progress: 0%     │  │ Progress: 0%     │            │
+│  │ ▓░░░░░░░░░░░░░░ │  │ ▓░░░░░░░░░░░░░░ │            │
+│  │                  │  │                  │            │
+│  │ [Click to Start] │  │ [Click to Start] │            │
+│  └──────────────────┘  └──────────────────┘            │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Video Player (After Enrollment)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  React for Beginners - Intro to React                  │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ┌──────────────────────────────────────────────────┐  │
+│  │                                                  │  │
+│  │          🎥 YouTube Video Player                │  │
+│  │                                                  │  │
+│  │  [▶ Play] [⏸ Pause] [⏹ Stop]                   │  │
+│  │  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │  │
+│  │  0:00 / 10:00                                   │  │
+│  │                                                  │  │
+│  └──────────────────────────────────────────────────┘  │
+│                                                         │
+│  Intro to React                                         │
+│  Learn the basics of React framework                   │
+│                                                         │
+│  ⏱️ Watch time: 5m 30s                                 │
+│  📊 Status: ▶️ Playing                                 │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  Course Content                                         │
+│                                                         │
+│  Section 1: Getting Started                            │
+│    🎥 Lesson 1: Intro to React (Current)              │
+│    🎥 Lesson 2: React Components                      │
+│                                                         │
+│  Section 2: Advanced Concepts                          │
+│    🎥 Lesson 3: State Management                      │
+│    🎥 Lesson 4: Hooks                                 │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Key Points
+
+✅ **Before Enrollment**:
+- Course info visible
+- Content LOCKED 🔒
+- NO videos visible
+- "Enroll Now" button
+
+✅ **After Enrollment**:
+- Course info visible
+- Content UNLOCKED 🔓
+- All videos visible
+- "Start Learning" button
+- Activity tracking enabled
+
+✅ **My Learning Dashboard**:
+- Shows all enrolled courses
+- Progress bar for each
+- Quick access to videos
+- Can browse more courses
+
+✅ **Video Player**:
+- YouTube videos embedded
+- Dark theme
+- Sidebar navigation
+- Activity tracking
+- Watch time display

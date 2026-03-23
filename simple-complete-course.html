@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Course & Generate Certificate</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container { 
+            max-width: 600px;
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 { 
+            color: #333; 
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            padding: 14px 30px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 600;
+            width: 100%; 
+            margin: 10px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .result { 
+            margin-top: 20px; 
+            padding: 15px; 
+            border-radius: 6px;
+            display: none;
+        }
+        .result.show {
+            display: block;
+        }
+        .error { 
+            background: #fee;
+            border-left: 4px solid #dc3545;
+            color: #c33;
+        }
+        .success { 
+            background: #efe;
+            border-left: 4px solid #28a745;
+            color: #3a3;
+        }
+        .loading { 
+            color: #666;
+            text-align: center;
+        }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Complete Course & Generate Certificate</h1>
+        <p class="subtitle">Auto-complete a course and generate your certificate</p>
+        
+        <div class="info-box">
+            ℹ️ This tool will mark all videos, quizzes, and assignments as complete for the selected course.
+        </div>
+
+        <div class="input-group">
+            <label for="userId">Your User ID:</label>
+            <input type="text" id="userId" placeholder="Enter your Firebase User ID" />
+            <small style="color: #999; display: block; margin-top: 5px;">
+                Don't know your ID? Check browser console after logging in.
+            </small>
+        </div>
+
+        <div class="input-group">
+            <label for="courseId">Select Course:</label>
+            <select id="courseId">
+                <option value="">Loading courses...</option>
+            </select>
+        </div>
+
+        <button onclick="completeCourse()">✅ Complete Course & Generate Certificate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Load courses on page load
+        async function loadCourses() {
+            try {
+                const res = await fetch('http://localhost:5000/api/courses');
+                const courses = await res.json();
+                
+                const select = document.getElementById('courseId');
+                select.innerHTML = '';
+                
+                if (courses && courses.length > 0) {
+                    courses.forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course.id;
+                        option.textContent = course.title;
+                        select.appendChild(option);
+                    });
+                } else {
+                    select.innerHTML = '<option value="">No courses available</option>';
+                }
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                document.getElementById('courseId').innerHTML = '<option value="">Error loading courses</option>';
+            }
+        }
+
+        async function completeCourse() {
+            const resultDiv = document.getElementById('result');
+            const userId = document.getElementById('userId').value.trim();
+            const courseId = document.getElementById('courseId').value;
+
+            if (!userId) {
+                resultDiv.className = 'result error show';
+                resultDiv.innerHTML = '<p>❌ Please enter your User ID</p>';
+                return;
+            }
+
+            if (!courseId) {
+                resultDiv.className = 'result error show';
+                resultDiv.innerHTML = '<p>❌ Please select a course</p>';
+                return;
+            }
+
+            resultDiv.className = 'result show loading';
+            resultDiv.innerHTML = '<p><span class="spinner"></span>Processing... This may take a moment</p>';
+            
+            try {
+                // Step 1: Complete the course
+                const completeRes = await fetch(`http://localhost:5000/api/progress/complete-for-user/${userId}/${courseId}`, {
+                    method: 'POST'
+                });
+
+                if (!completeRes.ok) {
+                    throw new Error(`Failed to complete course: ${completeRes.statusText}`);
+                }
+
+                const completeData = await completeRes.json();
+
+                // Step 2: Get course name
+                const coursesRes = await fetch('http://localhost:5000/api/courses');
+                const courses = await coursesRes.json();
+                const course = courses.find(c => c.id === courseId);
+
+                // Step 3: Generate certificate (using a simple endpoint)
+                const certRes = await fetch(`http://localhost:5000/api/certificates/generate-demo/${courseId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-User-ID': userId
+                    }
+                });
+
+                const certData = await certRes.json();
+
+                resultDiv.className = 'result success show';
+                resultDiv.innerHTML = `
+                    <h3>✅ Success!</h3>
+                    <p><strong>Course:</strong> ${course?.title || 'Unknown'}</p>
+                    <p><strong>Videos marked:</strong> ${completeData.completed.videosMarked}</p>
+                    <p><strong>Quizzes marked:</strong> ${completeData.completed.quizzesMarked}</p>
+                    <p><strong>Assignments marked:</strong> ${completeData.completed.assignmentsMarked}</p>
+                    ${certData.certificate ? `<p><strong>Certificate #:</strong> ${certData.certificate.certificateNumber}</p>` : ''}
+                    <p style="margin-top: 15px; font-size: 14px;">
+                        ✨ Now go to <strong>My Learning</strong> and refresh the page to see your certificate button!
+                    </p>
+                `;
+            } catch (error) {
+                resultDiv.className = 'result error show';
+                resultDiv.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+                console.error('Full error:', error);
+            }
+        }
+
+        // Load courses when page loads
+        window.addEventListener('load', loadCourses);
+    </script>
+</body>
+</html>

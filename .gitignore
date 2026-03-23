@@ -40,3 +40,6 @@ backend/temp/
 # App Data
 .gemini/
 brain/
+
+# Secrets
+backend/config/serviceAccountKey.json

@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(ellipse 900px 600px at 10% 0%, rgba(99, 102, 241, 0.18), transparent 55%),
+    radial-gradient(ellipse 700px 500px at 90% 15%, rgba(244, 63, 94, 0.12), transparent 55%),
+    radial-gradient(ellipse 800px 600px at 50% 90%, rgba(245, 158, 11, 0.09), transparent 60%),
+    linear-gradient(160deg, #0f172a 0%, #0d1526 50%, #0f172a 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  color: #e2e8f0;
+}
+
+/* Subtle noise/depth layer */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(circle at 25% 40%, rgba(99, 102, 241, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 75% 70%, rgba(244, 63, 94, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(245, 158, 11, 0.05) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── GLASS SYSTEM ─────────────────────────────────────── */
+
+/* Standard glass card */
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Darker, more opaque glass for navbars/sidebars */
+.glass-dark {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.85) 0%,
+    rgba(15, 23, 42, 0.75) 100%
+  );
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.50),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Tinted indigo glass for secondary highlights */
+.glass-secondary {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(79, 70, 229, 0.08) 100%
+  );
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(99, 102, 241, 0.12);
+}
+
+/* ─── GLOW EFFECTS ─────────────────────────────────────── */
+.glow-primary {
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.28);
+}
+.glow-secondary {
+  box-shadow: 0 0 40px rgba(244, 63, 94, 0.25);
+}
+.glow-accent {
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.22);
+}
+
+/* ─── GRADIENT OVERLAYS ────────────────────────────────── */
+.gradient-overlay {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(244, 63, 94, 0.06) 100%);
+}
+
+/* ─── BUTTON SYSTEM ────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #fff;
+  border: 1px solid rgba(99, 102, 241, 0.5);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #7577ff 0%, #6366f1 100%);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.50);
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #0f172a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.30);
+  transition: all 0.2s ease;
+}
+.btn-accent:hover {
+  box-shadow: 0 6px 24px rgba(245, 158, 11, 0.45);
+  transform: translateY(-1px);
+}
+
+/* ─── CARD SYSTEM ──────────────────────────────────────── */
+.card {
+  background: rgba(30, 41, 59, 0.60);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.40);
+  transition: all 0.25s ease;
+}
+.card:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ─── PROGRESS BAR ─────────────────────────────────────── */
+.progress-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+.progress-fill {
+  background: linear-gradient(90deg, #6366f1 0%, #f43f5e 100%);
+  border-radius: 999px;
+}
+
+/* ─── BADGE ────────────────────────────────────────────── */
+.badge-indigo {
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(99, 102, 241, 0.30);
+  color: #a5b4fc;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+/* ─── COMPONENT SHORTHANDS ─────────────────────────────── */
+@layer components {
+  .glass-panel {
+    @apply glass rounded-2xl border border-white/10;
+  }
+  .glass-panel-tight {
+    @apply glass rounded-xl border border-white/8;
+  }
+  .section-heading {
+    @apply text-3xl font-bold text-slate-100 tracking-tight;
+  }
+  .section-sub {
+    @apply text-slate-400 text-base;
+  }
+}
+
+/* ─── SCROLLBAR ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+/* ─── SELECTION ────────────────────────────────────────── */
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: #fff;
+}
+
+/* ─── INPUT FOCUS ──────────────────────────────────────── */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.45);
+}

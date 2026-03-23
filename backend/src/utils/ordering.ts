@@ -22,7 +22,7 @@ export const computeContentState = (sections: any[], watchedVideoIds: string[]) 
     
     return {
       ...video,
-      isLocked,
+      locked: isLocked,
       isCompleted: watchedVideoIds.includes(video.id),
       prevVideoId: prevVideo?.id || null,
       nextVideoId: sortedVideos[index + 1]?.id || null,

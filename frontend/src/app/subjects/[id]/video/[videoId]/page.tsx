@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import YouTube from 'react-youtube';
 import apiClient from '@/lib/apiClient';
-import Sidebar from '@/components/Sidebar';
+import SubjectSidebar from '@/components/SubjectSidebar';
 
 export default function VideoPlayerPage() {
   const { id: subjectId, videoId } = useParams();
@@ -15,7 +15,7 @@ export default function VideoPlayerPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await api.get(`/subjects/${subjectId}/tree`);
+        const { data } = await apiClient.get(`/subjects/${subjectId}/tree`);
         setTree(data);
         const video = data.sections.flatMap((s: any) => s.videos).find((v: any) => v.id === videoId);
         setCurrentVideo(video);
@@ -36,7 +36,7 @@ export default function VideoPlayerPage() {
       if (player && player.getPlayerState() === 1) { // 1 = playing
         const currentTime = player.getCurrentTime();
         try {
-          await api.post(`/progress/videos/${videoId}`, { lastPosition: currentTime });
+          await apiClient.post(`/progress/videos/${videoId}`, { lastPosition: currentTime });
         } catch (err) {
           console.error('Heartbeat failed:', err);
         }
@@ -48,7 +48,7 @@ export default function VideoPlayerPage() {
 
   const onVideoEnd = async () => {
     try {
-      await api.post(`/progress/videos/${videoId}`, { status: 'COMPLETED' });
+      await apiClient.post(`/progress/videos/${videoId}`, { status: 'COMPLETED' });
       // Go to next video
       if (currentVideo?.nextVideoId) {
         router.push(`/subjects/${subjectId}/video/${currentVideo.nextVideoId}`);
@@ -66,7 +66,7 @@ export default function VideoPlayerPage() {
     // Optional: immediate save on pause or state change
     if (event.data === 2) { // Paused
       const currentTime = event.target.getCurrentTime();
-      await api.post(`/progress/videos/${videoId}`, { lastPosition: currentTime });
+      await apiClient.post(`/progress/videos/${videoId}`, { lastPosition: currentTime });
     }
   };
 
@@ -75,7 +75,7 @@ export default function VideoPlayerPage() {
 
   return (
     <div className="flex h-screen bg-white">
-      <Sidebar tree={tree} currentVideoId={videoId} subjectId={subjectId} />
+      <SubjectSidebar tree={tree} currentVideoId={videoId} subjectId={subjectId} />
       <div className="flex-1 overflow-y-auto p-8 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <div className="aspect-video bg-black rounded-xl overflow-hidden shadow-2xl">

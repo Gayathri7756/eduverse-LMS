@@ -10,7 +10,7 @@ export default function SubjectsPage() {
   useEffect(() => {
     async function fetchSubjects() {
       try {
-        const { data } = await api.get('/subjects');
+        const { data } = await apiClient.get('/subjects');
         setSubjects(data);
       } catch (err) {
         console.error(err);

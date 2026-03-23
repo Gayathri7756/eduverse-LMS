@@ -20,16 +20,16 @@ export default function Sidebar({ tree, currentVideoId, subjectId }: any) {
               {section.videos?.map((video: any) => (
                 <Link
                   key={video.id}
-                  href={video.isUnlocked ? `/subjects/${subjectId}/video/${video.id}` : '#'}
+                  href={!video.isLocked ? `/subjects/${subjectId}/video/${video.id}` : '#'}
                   className={`flex items-center px-4 py-2 text-sm rounded-md transition-colors ${
                     video.id === currentVideoId
                       ? 'bg-indigo-50 text-indigo-700 font-medium'
-                      : video.isUnlocked
+                      : !video.isLocked
                       ? 'text-gray-600 hover:bg-gray-100'
                       : 'text-gray-400 cursor-not-allowed'
                   }`}
                 >
-                  {video.isUnlocked ? (
+                  {!video.isLocked ? (
                     <PlayCircle className="mr-2 h-4 w-4" />
                   ) : (
                     <Lock className="mr-2 h-4 w-4 text-gray-300" />

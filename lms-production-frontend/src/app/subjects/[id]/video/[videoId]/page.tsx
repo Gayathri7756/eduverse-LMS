@@ -28,6 +28,24 @@ export default function VideoPlayerPage() {
     fetchData();
   }, [subjectId, videoId]);
 
+  useEffect(() => {
+    if (!currentVideo || !videoId) return;
+
+    const heartbeat = setInterval(async () => {
+      const player = (window as any).ytPlayer; // Assume we can get player instance or use state
+      if (player && player.getPlayerState() === 1) { // 1 = playing
+        const currentTime = player.getCurrentTime();
+        try {
+          await api.post(`/progress/videos/${videoId}`, { lastPosition: currentTime });
+        } catch (err) {
+          console.error('Heartbeat failed:', err);
+        }
+      }
+    }, 15000);
+
+    return () => clearInterval(heartbeat);
+  }, [videoId, currentVideo]);
+
   const onVideoEnd = async () => {
     try {
       await api.post(`/progress/videos/${videoId}`, { status: 'COMPLETED' });
@@ -40,8 +58,13 @@ export default function VideoPlayerPage() {
     }
   };
 
+  const onReady = (event: any) => {
+    (window as any).ytPlayer = event.target;
+  };
+
   const onStateChange = async (event: any) => {
-    if (event.data === 1) { // Playing
+    // Optional: immediate save on pause or state change
+    if (event.data === 2) { // Paused
       const currentTime = event.target.getCurrentTime();
       await api.post(`/progress/videos/${videoId}`, { lastPosition: currentTime });
     }
@@ -57,8 +80,9 @@ export default function VideoPlayerPage() {
         <div className="max-w-4xl mx-auto">
           <div className="aspect-video bg-black rounded-xl overflow-hidden shadow-2xl">
             <YouTube
-              videoId={currentVideo.url.split('v=')[1] || currentVideo.url} // Simple regex for demo
+              videoId={currentVideo.url.split('v=')[1] || currentVideo.url}
               opts={{ width: '100%', height: '100%', playerVars: { autoplay: 1 } }}
+              onReady={onReady}
               onEnd={onVideoEnd}
               onStateChange={onStateChange}
               className="w-full h-full"

@@ -4,7 +4,7 @@ import { AuthRequest } from '../../middleware/auth';
 
 export const updateProgress = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const progress = await ProgressService.upsertProgress(req.user!.userId, req.params.videoId, req.body);
+    const progress = await ProgressService.upsertProgress((req.user!.userId as string), (req.params.videoId as string), req.body);
     res.json(progress);
   } catch (err) {
     next(err);
@@ -13,7 +13,7 @@ export const updateProgress = async (req: AuthRequest, res: Response, next: Next
 
 export const getProgress = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const progress = await ProgressService.getProgressByVideo(req.user!.userId, req.params.videoId);
+    const progress = await ProgressService.getProgressByVideo((req.user!.userId as string), (req.params.videoId as string));
     res.json(progress);
   } catch (err) {
     next(err);
@@ -22,7 +22,7 @@ export const getProgress = async (req: AuthRequest, res: Response, next: NextFun
 
 export const getSubjectProgress = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const stats = await ProgressService.getSubjectProgress(req.user!.userId, req.params.subjectId);
+    const stats = await ProgressService.getSubjectProgress((req.user!.userId as string), (req.params.subjectId as string));
     res.json(stats);
   } catch (err) {
     next(err);
